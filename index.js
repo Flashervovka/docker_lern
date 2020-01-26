@@ -5,11 +5,11 @@ const url = require('url')
 const redirect = require('micro-redirect')
 
 const client = new Client({
-  user: 'postgres',
-  host: process.env.POSTGRES_HOST || 'localhost',
-  port: 5432,
-  database: 'docker_test',
-  password: '123',
+    user: 'postgres',
+    host: process.env.POSTGRES_HOST || 'localhost',
+    port: 5432,
+    database: 'docker_test',
+    password: '123',
 })
 
 client.connect()
@@ -28,9 +28,9 @@ const add = async (req, res) => {
     const result = await client.query('insert into messages values ($1)', [parts.query.text])
     redirect(res, 302, '/')
 }
- 
+
 module.exports = router(
-    get('/', index), 
+    get('/', index),
     get('/add', add)
 )
 
